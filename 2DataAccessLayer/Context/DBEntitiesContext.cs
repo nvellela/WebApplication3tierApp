@@ -16,6 +16,7 @@ namespace _2DataAccessLayer.Context
         }
 
         public DbSet<Person> People { get; set; }
+        public DbSet<Movie> Movies { get; set; }
         //public DbSet<Category> Categories { get; set; }
     }
 
