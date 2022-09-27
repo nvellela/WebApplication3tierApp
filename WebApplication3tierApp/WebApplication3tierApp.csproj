@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\2DataAccessLayer\2DataAccessLayer.csproj" />
+    <ProjectReference Include="..\4Bootstrap\4Bootstrap.csproj" />
   </ItemGroup>
 
 </Project>
