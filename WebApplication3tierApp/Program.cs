@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 var projectDevelopmentCorsOptions = "_projectDevelopmentCorsOptions";
 var cnn = builder.Configuration.GetConnectionString("DefaultConnection");
 // Add services to the container.
-builder.Services.AddDbContext<DBEntitiesContext>(options => options.UseSqlServer(cnn, b => b.MigrationsAssembly("DLL")));
+builder.Services.AddDbContext<DBEntitiesContext>(options => options.UseSqlServer(cnn, b => b.MigrationsAssembly("2DataAccessLayer")));
 
 #region CUSTOM SERVICES [D-I]
 
