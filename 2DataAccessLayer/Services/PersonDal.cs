@@ -20,18 +20,18 @@ namespace _2DataAccessLayer.Services
             this._db = dbctx; // new TestDBEntities();
         }
 
-       
+
         public List<PersonModel> GetAll()
         {
             var result = _db.People.Where(x => x.IsDeleted == false).ToList();
-            
+
             var returnObject = new List<PersonModel>();
             foreach (var item in result)
             {
                 returnObject.Add(item.ToPersonModel());
             }
 
-            return returnObject;           
+            return returnObject;
         }
 
         public PersonModel? GetById(int personId)
@@ -47,7 +47,7 @@ namespace _2DataAccessLayer.Services
             _db.People.Add(newPerson);
             _db.SaveChanges();
             return newPerson.PersonId;
-        }     
+        }
 
 
         public void UpdatePerson(PersonModel person)
@@ -59,7 +59,7 @@ namespace _2DataAccessLayer.Services
             {
                 throw new ApplicationException($"Person {person.PersonId} does not exist.");
             }
-            person.ToPerson(existingPerson);           
+            person.ToPerson(existingPerson);
 
             _db.Update(existingPerson);
             _db.SaveChanges();
