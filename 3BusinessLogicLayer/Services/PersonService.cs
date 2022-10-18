@@ -1,12 +1,15 @@
 ﻿
 
+using _1CommonInfrastructure.Enums;
 using _1CommonInfrastructure.Models;
+using _1CommonInfrastructure.Validations;
 using _2DataAccessLayer.Interfaces;
 using _3BusinessLogicLayer.Interfaces;
+using System.Data;
 
 namespace _3BusinessLogicLayer.Services
 {
-    public class PersonService :  IPersonService
+    public class PersonService : BaseService,  IPersonService
     {
         private readonly IPersonDal _personDal;
        
@@ -25,14 +28,27 @@ namespace _3BusinessLogicLayer.Services
         }
 
         public async Task<List<PersonModel>> GetAll()
-        {            
+        {
+            await ValidateAccess(SystemActions.PersonView);
+            //write log to journal if required -- add to the base class if repeated calls
+
             return _personDal.GetAll();
         }
 
         public async Task<int> CreatePerson(PersonModel person)
         {
-            //write validations here
-            var newPersonId = _personDal.CreatePerson(person);
+            //1 check security
+            await ValidateAccess(SystemActions.PersonCreate);
+
+
+            //2 [if required] write log to journal if required -- add to the base class if repeated calls
+
+            //3 do validations here @either fluent or by manual if/else + service calls
+            CheckFluentValidation(await new PersonValidator().ValidateAsync(person));
+
+            //4 do any business logic
+            var newPersonId = _personDal.CreatePerson(person);            
+
             return newPersonId;
         }
 
