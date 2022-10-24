@@ -16,6 +16,7 @@ namespace _1CommonInfrastructure.Validations
 
     public static class ValidatorMessage
     {
+        //test
         public static string MaxLength(int maxLength) => $"exceeded maximum {maxLength} characters";
 
         public static string NotEmpty => $"cannot be empty";

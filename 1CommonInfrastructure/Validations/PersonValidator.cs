@@ -14,7 +14,9 @@ namespace _1CommonInfrastructure.Validations
         {
             RuleFor(x => x.GivenName)
                 .NotEmpty()
-                    .WithMessage("This field cannot be empty")
+                // .WithMessage("This field cannot be empty")
+                .WithMessage(ValidatorMessage.NotEmpty)
+
                 .MaximumLength(400)
                     .WithMessage("Max Length allowed is (400)")
                 ;

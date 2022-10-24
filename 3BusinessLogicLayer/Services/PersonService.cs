@@ -42,7 +42,7 @@ namespace _3BusinessLogicLayer.Services
 
 
             //2 [if required] write log to journal if required -- add to the base class if repeated calls
-
+           // serilog.log()
             //3 do validations here @either fluent or by manual if/else + service calls
             CheckFluentValidation(await new PersonValidator().ValidateAsync(person));
 

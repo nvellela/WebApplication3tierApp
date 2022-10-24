@@ -1,6 +1,7 @@
 using _2DataAccessLayer.Context;
 using _4Bootstrap;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Microsoft.AspNetCore.Authentication.Negotiate;
 using Microsoft.EntityFrameworkCore;
 
 using Newtonsoft.Json;
@@ -60,7 +61,14 @@ builder.Services.AddSwaggerGen();
 //init bootstrap services ...
 
 builder.Services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
+builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
+   .AddNegotiate();
 
+builder.Services.AddAuthorization(options =>
+{
+    // By default, all incoming requests will be authorized according to the default policy.
+    options.FallbackPolicy = options.DefaultPolicy;
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -74,8 +82,9 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseRouting();
 app.UseMiddleware<ErrorReporterMiddleware>();
-app.UseAuthorization();
 
+app.UseAuthentication();
+app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
