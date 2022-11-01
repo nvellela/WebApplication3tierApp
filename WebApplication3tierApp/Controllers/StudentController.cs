@@ -9,7 +9,7 @@ namespace WebApplication3tierApp.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
-    public class StudentController : ControllerBase   
+    public class StudentController : BaseController
     {
 
         private readonly IStudentService _StudentService;

@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApplication3tierApp.Controllers
-{
-    [ApiController]
+{    
     [Route("[controller]")]
-    [Authorize]
+    [ApiController]
+    [Produces("application/json")]
     public class WeatherForecastController : BaseController
     {
         private static readonly string[] Summaries = new[]
@@ -35,5 +35,21 @@ namespace WebApplication3tierApp.Controllers
             })
             .ToArray();
         }
+
+        [HttpGet("GetUserDetails", Name = "GetUserDetails")]
+        public IActionResult GetUserDetails()
+        {
+            var ss = _securityService.GetUserSecuirty();
+            return new JsonResult(ss);
+        }
+
+
+        [HttpGet("GetUserName", Name = "GetUserName")]
+        public IActionResult GetUserName()
+        {
+            var UserName = User.Identity.Name;
+            return new JsonResult(UserName);
+        }
+
     }
 }

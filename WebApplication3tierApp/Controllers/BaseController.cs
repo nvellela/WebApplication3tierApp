@@ -6,8 +6,9 @@ using System.DirectoryServices.Protocols;
 
 namespace WebApplication3tierApp.Controllers
 {
-    
-    public class BaseController : ControllerBase
+
+    [Authorize]
+    public abstract class BaseController : ControllerBase
     {
         
         //public string GetUsername()

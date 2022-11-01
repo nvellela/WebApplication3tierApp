@@ -27,11 +27,16 @@ namespace _3BusinessLogicLayer.Services
         public async Task<SecurityModel?> GetUserSecuirty()
         {
             var userIdentity = _userNameResolver.GetUsername();
+
+            if(userIdentity == null)
+            {
+                throw new UnauthorizedAccessException("User identity not found");
+            }
             return _securityDal.GetUserSecurityModel(userIdentity);
 
         }
 
-        public async Task<bool> CheckUserActivity(List<string> screenCode)
+        public async Task<bool> CheckUserActivity(string[] screenCode)
         {        
             var authenticatedUser = await GetUserSecuirty();
             return authenticatedUser.SystemActionCodes.Any(screenCode.Contains);

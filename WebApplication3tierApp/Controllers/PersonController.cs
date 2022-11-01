@@ -1,5 +1,6 @@
 ﻿using _2DataAccessLayer.Services;
 using _3BusinessLogicLayer.Interfaces;
+using _3BusinessLogicLayer.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication3tierApp.Models;
@@ -9,17 +10,27 @@ namespace WebApplication3tierApp.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
-    public class PersonController : ControllerBase   
+    public class PersonController : BaseController
     {
 
         private readonly IPersonService _personService;
         private readonly ILogger<PersonController> _logger;
-
-        public PersonController(IPersonService personService, ILogger<PersonController> logger)
+        private readonly ISecurityService _securityService;
+       
+        public PersonController(IPersonService personService, ILogger<PersonController> logger, ISecurityService securityService)
         {
             _personService = personService;
             _logger = logger;
+            _securityService = securityService;
         }
+
+
+        //[HttpGet("GetUserDetails", Name = "GetUserDetails")]
+        //public IActionResult GetUserDetails()
+        //{
+        //    var ss = _securityService.GetUserSecuirty();
+        //    return new JsonResult(ss);
+        //}
 
         [HttpGet("", Name = "GetAll")]
         public async Task<List<PersonDto>> GetAll()

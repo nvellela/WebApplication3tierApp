@@ -1,20 +1,22 @@
 ﻿
 
+using _1CommonInfrastructure.Enum;
 using _1CommonInfrastructure.Models;
 using _2DataAccessLayer.Interfaces;
 using _3BusinessLogicLayer.Interfaces;
 
 namespace _3BusinessLogicLayer.Services
 {
-    public class PersonService :  IPersonService
+    public class PersonService :   BaseService, IPersonService
     {
         private readonly IPersonDal _personDal;
        
-        public PersonService(IPersonDal personDal
+        public PersonService(IPersonDal personDal,
+            ISecurityService securityService
         //ILoggingService loggingService,
         //IPersonDal personDal,
         //IAuditDal auditDal
-        ) 
+        ) : base(securityService)
         {
             _personDal = personDal;           
         }
@@ -31,6 +33,12 @@ namespace _3BusinessLogicLayer.Services
 
         public async Task<int> CreatePerson(PersonModel person)
         {
+            await IsAuthorisedToAccess("PersonView");  //good 
+
+            await IsAuthorisedToAccess(SystemActionsEnum.PersonAdd.ToString());  //good 
+
+            
+
             //write validations here
             var newPersonId = _personDal.CreatePerson(person);
             return newPersonId;

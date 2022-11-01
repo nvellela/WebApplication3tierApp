@@ -5,6 +5,6 @@ namespace _3BusinessLogicLayer.Interfaces
     public interface ISecurityService
     {
         Task<SecurityModel?> GetUserSecuirty();
-        Task<bool> CheckUserActivity(List<string> screenCode);
+        Task<bool> CheckUserActivity(string[] screenCode);
     }
 }
