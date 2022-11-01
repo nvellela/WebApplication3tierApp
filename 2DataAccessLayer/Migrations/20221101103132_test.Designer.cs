@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using _2DataAccessLayer.Context;
 
@@ -11,9 +12,10 @@ using _2DataAccessLayer.Context;
 namespace _2DataAccessLayer.Migrations
 {
     [DbContext(typeof(DBEntitiesContext))]
-    partial class DBEntitiesContextModelSnapshot : ModelSnapshot
+    [Migration("20221101103132_test")]
+    partial class test
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -101,78 +103,6 @@ namespace _2DataAccessLayer.Migrations
                     b.HasKey("StudentId");
 
                     b.ToTable("Students");
-                });
-
-            modelBuilder.Entity("_2DataAccessLayer.Context.Models.SystemAction", b =>
-                {
-                    b.Property<int>("SystemActionID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SystemActionID"), 1L, 1);
-
-                    b.Property<string>("ActionCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ActionName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("SystemActionID");
-
-                    b.ToTable("SystemActions");
-                });
-
-            modelBuilder.Entity("_2DataAccessLayer.Context.Models.UserAccount", b =>
-                {
-                    b.Property<int>("UserAccountID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserAccountID"), 1L, 1);
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("UserAccountID");
-
-                    b.ToTable("UserAccounts");
-                });
-
-            modelBuilder.Entity("SystemActionUserAccount", b =>
-                {
-                    b.Property<int>("SystemActionsSystemActionID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserAccountsUserAccountID")
-                        .HasColumnType("int");
-
-                    b.HasKey("SystemActionsSystemActionID", "UserAccountsUserAccountID");
-
-                    b.HasIndex("UserAccountsUserAccountID");
-
-                    b.ToTable("SystemActionUserAccount");
-                });
-
-            modelBuilder.Entity("SystemActionUserAccount", b =>
-                {
-                    b.HasOne("_2DataAccessLayer.Context.Models.SystemAction", null)
-                        .WithMany()
-                        .HasForeignKey("SystemActionsSystemActionID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("_2DataAccessLayer.Context.Models.UserAccount", null)
-                        .WithMany()
-                        .HasForeignKey("UserAccountsUserAccountID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

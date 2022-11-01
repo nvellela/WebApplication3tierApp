@@ -21,7 +21,13 @@ namespace _2DataAccessLayer.Context
         public DbSet<Student> Students { get; set; }
 
         public DbSet<Employee> Employees { get; set; }
-        //public DbSet<Category> Categories { get; set; }
+
+
+        //security models
+        public DbSet<UserAccount> UserAccounts { get; set; }
+
+        public DbSet<SystemAction> SystemActions { get; set; }
+
     }
 
 }
