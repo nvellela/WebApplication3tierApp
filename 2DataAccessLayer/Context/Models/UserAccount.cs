@@ -31,7 +31,12 @@ namespace _2DataAccessLayer.Context.Models
      USE [testdb27Sep22]
 GO
     -- logging -- add connection string in logging service - normally we read from configuration
-    -- add this connection strings TrustServerCertificate
+    -- add this connection strings TrustServerCertificate for certificate of connecting db to work for ef and serilog
+
+    --ILogger<PersonNoteController>  https://stackoverflow.com/questions/57272654/inject-serilogs-ilogger-interface-in-asp-net-core-web-api-controller
+
+    -- very useful link to add middleware / exception hanlding https://code-maze.com/global-error-handling-aspnetcore/
+
     -- add BaseController to authorise  without baseContoller /or [authorise] keyword userIdentity is not resolved
     -- only single quote or use two fields domain and userId
 INSERT INTO [dbo].[UserAccounts]

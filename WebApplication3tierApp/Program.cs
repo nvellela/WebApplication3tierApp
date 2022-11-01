@@ -6,6 +6,8 @@ using WebApplication3tierApp.Controllers;
 using _1CommonInfrastructure.Interfaces;
 using Newtonsoft.Json.Serialization;
 using _1CommonInfrastructure.Services;
+using Microsoft.AspNetCore.Diagnostics;
+using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -71,7 +73,47 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
+//app.UseMiddleware<ExceptionHandlingMiddleware>();
+var logger = app.Services.GetRequiredService<ILoggingService>();
+app.ConfigureExceptionHandler(logger);
 
 app.MapControllers();
 
 app.Run();
+
+
+public static class ExceptionMiddlewareExtensions
+{
+    //https://code-maze.com/global-error-handling-aspnetcore/
+    public static void ConfigureExceptionHandler(this IApplicationBuilder app, ILoggingService logger)
+    {
+        app.UseExceptionHandler(appError =>
+        {
+            appError.Run(async context =>
+            {
+                context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                context.Response.ContentType = "application/json";
+                var contextFeature = context.Features.Get<IExceptionHandlerFeature>();
+                if (contextFeature != null)
+                {
+                    logger.WriteLog("ExceptionMiddlewareExtensions", $"Something went wrong: {contextFeature.Error}", ex: contextFeature.Error);
+                    await context.Response.WriteAsync(new ErrorDetails()
+                    {
+                        StatusCode = context.Response.StatusCode,
+                        Message = "Internal Server Error."
+                    }.ToString());
+                }
+            });
+        });
+    }
+}
+
+internal class ErrorDetails
+{
+    public ErrorDetails()
+    {
+    }
+
+    public int StatusCode { get; set; }
+    public string Message { get; set; }
+}
