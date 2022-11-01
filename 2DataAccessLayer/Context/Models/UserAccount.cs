@@ -31,7 +31,7 @@ namespace _2DataAccessLayer.Context.Models
      USE [testdb27Sep22]
 GO
     -- logging -- add connection string in logging service - normally we read from configuration
-
+    -- add this connection strings TrustServerCertificate
     -- add BaseController to authorise  without baseContoller /or [authorise] keyword userIdentity is not resolved
     -- only single quote or use two fields domain and userId
 INSERT INTO [dbo].[UserAccounts]
