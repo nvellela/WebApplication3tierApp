@@ -26,4 +26,43 @@ namespace _2DataAccessLayer.Context.Models
         //Collection Navigation Reference
         public virtual ICollection<UserAccount> UserAccounts { get; set; }
     }
+
+    /*
+     USE [testdb27Sep22]
+GO
+    -- only single quote or use two fields domain and userId
+INSERT INTO [dbo].[UserAccounts]
+           ([UserId]
+           ,[UserName])
+     VALUES
+           ('LAPTOP-325PDDR9\asus' , 'Nare Vellela')
+GO
+
+
+INSERT INTO [dbo].[SystemActions]
+           ([ActionCode]
+           ,[ActionName])
+     VALUES
+           ('PersonView' , 'Person view')
+		   ,('PersonAdd' , 'Person add')
+		   ,('PersonDelete' , 'Person delete')
+		   ,('PersonUpdate' , 'Person update')
+
+
+INSERT INTO [dbo].[SystemActionUserAccount]
+([SystemActionsSystemActionID]
+,[UserAccountsUserAccountID])
+VALUES
+( 1,1)  --action, user
+,(2,1)
+,(4,1)
+
+
+
+select * from [dbo].[SystemActions]
+select * from [dbo].[UserAccounts]
+     
+     */
+
+
 }

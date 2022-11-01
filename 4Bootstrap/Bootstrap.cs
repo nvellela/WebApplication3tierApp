@@ -13,6 +13,9 @@ namespace _4Bootstrap
             // DB Connection            
             //services.AddScoped<Database>();
 
+            //Add common service
+
+
             // Application Services                       
             _2DataAccessLayer.Ioc.Init.InitializeDependencies(services, configuration);
             _3BusinessLogicLayer.Ioc.Init.InitializeDependencies(services, configuration);
