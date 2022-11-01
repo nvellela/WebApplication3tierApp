@@ -1,3 +1,5 @@
+using _1CommonInfrastructure.Interfaces;
+using _1CommonInfrastructure.Services;
 using _3BusinessLogicLayer.Interfaces;
 using _3BusinessLogicLayer.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -17,10 +19,12 @@ namespace WebApplication3tierApp.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
         private readonly ISecurityService _securityService;
-        public WeatherForecastController(ILogger<WeatherForecastController> logger, ISecurityService securityService) 
+        private readonly ILoggingService _loggingService;
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, ISecurityService securityService, ILoggingService loggingService) 
         {
             _logger = logger;
             _securityService= securityService;
+            _loggingService = loggingService;
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
@@ -40,6 +44,10 @@ namespace WebApplication3tierApp.Controllers
         public IActionResult GetUserDetails()
         {
             var ss = _securityService.GetUserSecuirty();
+
+            _loggingService.WriteLog("GetUserDetails", "test", ss);
+
+            _loggingService.WriteLog("GetUserDetails", "testError",ex: new Exception("testing exception"));
             return new JsonResult(ss);
         }
 
@@ -47,6 +55,7 @@ namespace WebApplication3tierApp.Controllers
         [HttpGet("GetUserName", Name = "GetUserName")]
         public IActionResult GetUserName()
         {
+            _loggingService.WriteLog("GetUserName", "test");
             var UserName = User.Identity.Name;
             return new JsonResult(UserName);
         }

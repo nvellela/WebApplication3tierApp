@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication3tierApp", "WebApplication3tierApp\WebApplication3tierApp.csproj", "{5AD8C55E-683E-435E-A6D4-BF34AF67ED14}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication3tierApp", "WebApplication3tierApp\WebApplication3tierApp.csproj", "{5AD8C55E-683E-435E-A6D4-BF34AF67ED14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1CommonInfrastructure", "1CommonInfrastructure\1CommonInfrastructure.csproj", "{CC46A942-3423-4611-AB7F-0FEA441A0D90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "1CommonInfrastructure", "1CommonInfrastructure\1CommonInfrastructure.csproj", "{CC46A942-3423-4611-AB7F-0FEA441A0D90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2DataAccessLayer", "2DataAccessLayer\2DataAccessLayer.csproj", "{67EA415A-C9AE-4F05-923A-F9489DF9E1CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2DataAccessLayer", "2DataAccessLayer\2DataAccessLayer.csproj", "{67EA415A-C9AE-4F05-923A-F9489DF9E1CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3BusinessLogicLayer", "3BusinessLogicLayer\3BusinessLogicLayer.csproj", "{713C5AE8-525A-4BE1-9546-4730A5C93833}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3BusinessLogicLayer", "3BusinessLogicLayer\3BusinessLogicLayer.csproj", "{713C5AE8-525A-4BE1-9546-4730A5C93833}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4Bootstrap", "4Bootstrap\4Bootstrap.csproj", "{C47F0572-580E-478A-BBB0-7566EF8C4220}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "4Bootstrap", "4Bootstrap\4Bootstrap.csproj", "{C47F0572-580E-478A-BBB0-7566EF8C4220}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

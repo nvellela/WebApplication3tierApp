@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication.Negotiate;
 using WebApplication3tierApp.Controllers;
 using _1CommonInfrastructure.Interfaces;
 using Newtonsoft.Json.Serialization;
+using _1CommonInfrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,7 +42,7 @@ builder.Services.AddSwaggerGen();
 #region CUSTOM SERVICES [D-I]
 
 //add common services DI
-//builder.Services.AddTransient<ILogService, LogService>();
+builder.Services.AddTransient<ILoggingService, LoggingService>();
 //IHttpContextAccessor
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddTransient<IUserNameResolver, UserNameResolver>();
