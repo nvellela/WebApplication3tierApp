@@ -55,7 +55,7 @@ namespace WebApplication3tierApp.Controllers
         [HttpGet("GetUserName", Name = "GetUserName")]
         public IActionResult GetUserName()
         {
-            throw new Exception("Exception while checking.");
+            //throw new Exception("Exception while checking.");
 
             _loggingService.WriteLog("GetUserName", "test");
             var UserName = User.Identity.Name;

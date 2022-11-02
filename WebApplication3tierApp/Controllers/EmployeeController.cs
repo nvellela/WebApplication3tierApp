@@ -9,7 +9,7 @@ namespace WebApplication3tierApp.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
-    public class EmployeeController : ControllerBase   
+    public class EmployeeController : BaseController
     {
 
         private readonly IEmployeeService _EmployeeService;
