@@ -28,7 +28,8 @@ namespace _1CommonInfrastructure.Services
 
         public void WriteLog(string keyArea, string message, object additionalInfo = null, Exception ex = null)
         {
-            var connectionString = "data source=.\\sqlexpress01;initial catalog=testdb27Sep22;integrated security=True;MultipleActiveResultSets=True;TrustServerCertificate=True;";//_configuration.GetSection("ConnectionStrings:ApplicationDB");                    
+            //Server=.\\sqlexpress;Database=PracticeAshish
+            var connectionString = "data source=.\\sqlexpress;initial catalog=PracticeAshish;integrated security=True;MultipleActiveResultSets=True;TrustServerCertificate=True;";//_configuration.GetSection("ConnectionStrings:ApplicationDB");                    
 
             var columnOptions = new ColumnOptions
             {

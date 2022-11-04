@@ -13,5 +13,10 @@ namespace _1CommonInfrastructure.Enum
         ,PersonAdd
         ,PersonDelete
         ,PersonUpdate
+
+            ,StudentView
+,StudentAdd
+,StudentDelete
+,StudentUpdate
     }
 }

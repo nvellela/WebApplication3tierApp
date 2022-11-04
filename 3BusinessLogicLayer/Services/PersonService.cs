@@ -36,9 +36,9 @@ namespace _3BusinessLogicLayer.Services
 
         public async Task<int> CreatePerson(PersonModel person)
         {
-            await IsAuthorisedToAccess("PersonView");  //good 
+            //await IsAuthorisedToAccess("PersonView");  //good 
 
-            await IsAuthorisedToAccess(SystemActionsEnum.PersonAdd.ToString());  //good 
+            await IsAuthorisedToAccess(SystemActionsEnum.StudentAdd.ToString());  //good 
                         
             try
             {
